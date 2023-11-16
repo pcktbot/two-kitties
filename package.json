@@ -1,0 +1,14 @@
+{
+  "name": "two-kitties",
+  "module": "index.ts",
+  "type": "module",
+  "devDependencies": {
+    "bun-types": "latest"
+  },
+  "scripts": {
+    "watch": "bun --hot run index.js"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
