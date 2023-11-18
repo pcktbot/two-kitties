@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Modal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;700&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="modals.css" />
+  </head>
+
+  <body>
+    <article>
+      <a data-action="open" data-id="modal-1" class="btn primary"><span>Show Modal</span></a>
+      <a data-action="open" data-id="modal-not-found" class="btn secondary"><span>Not Found</span></a>
+      <a data-action="open" data-id="" class="btn tertiary"><span>Missing ID</span></a>
+      <a data-action="open" class="btn quaternary"><span>Missing 'data-id=' Attribute</span></a>
+
+      <div class="target"></div>
+    </article>
+    <div id="modal-1" class="modal hidden" data-align="center" data-justify="center">
+      <div class="modal-header">
+        <a class="btn circle" data-action="cancel"><span>✘</span></a>
+      </div>
+      <div class="modal-body">
+
+      </div>
+      <div class="modal-footer">
+        <a data-action="cancel" class="btn secondary"><span>Cancel</span></a>
+        <a data-action="confirm" class="btn primary"><span>Confirm</span></a>
+      </div>
+    </div>
+    
+    <script type="text/javascript" src="modals.js"></script>
+  </body>
+</html>
