@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@900&display=swap');
+
+*,*::after,*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --black  : #111111;
+  --red    : #e15241;
+  --dk-red : #c05a4b;
+  --lt-blue: #bad9e5;
+  --blue   : #294970;
+  --yellow : #ae8f48;
+  --silver : #d3d4cd;
+}
+
+.black { background-color: var(--black); }
+.red { background-color: var(--red); }
+.dk-red { background-color: var(--dk-red); }
+.lt-blue { background-color: var(--lt-blue); }
+.blue { background-color: var(--blue); }
+.yellow { background-color: var(--yellow); }
+.silver { background-color: var(--silver); }
+
+body {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  min-height: 100vh;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.item {
+  width: 80%; height: 90%; margin: 10px;
+  
+  
+  box-shadow: inset -300px -300px     0 var(--black),
+              inset  300px -300px     0 var(--red),
+              inset -300px  300px     0 var(--blue),
+              inset  300px  300px     0 var(--yellow),
+                         0      0  10px rgba(0,0,0,.5);
+
+
+  transition: box-shadow    linear      .6s,
+              color         ease-out    .5s,
+              transform     ease        .3s,
+              border        ease        .2s,
+              border-radius linear      .7s;
+  
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+
+}
+ 
+.item:hover {
+  box-shadow: inset 0     0     0 transparent,
+              inset 0     0     0 transparent,
+              inset 0     0     0 transparent,
+              inset 0     0     0 transparent,
+                    0  15px  25px rgba(0,0,0,.5);
+  color: var(--silver);
+  transform: translateY(-10px);
+
+  /* border: 1px solid rgba(0,0,0,.5); */
+}
+.label {
+  font-size: 5rem;
+  /* text-align: center; */
+  /* margin: 0; */
+  color: white;
+  pointer-events: none;
+  user-select: none;
+}
+
+
+.input-container {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 35vw;
+  padding: 10px;
+}
+.input {
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  background-color: white;
+  color: var(--black);
+  /* text-shadow: 0 0 0 white; */
+  font-size: 4rem;
+  text-align: center;
+  caret-color: transparent;
+  transition: text-shadow linear 300ms;
+}
