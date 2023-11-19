@@ -17,13 +17,17 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, req.path));
 });
 
+function anchorData(dirent: fs.Dirent) {
+  return {name: dirent.name, href: `/${dirent.name}/`};
+}
+
 app.get('/api/navigation', function (req, res) {
   const srcPath = path.join(__dirname, 'src');
   
   const subdirectories = fs.readdirSync(srcPath, { withFileTypes: true })
-    .filter((dirent) => dirent.isDirectory())
-    .map((dirent) => dirent.name);
-  console.log(subdirectories);
+                           .filter(dirent => dirent.isDirectory())
+                           .map(dirent => anchorData(dirent));
+  
   res.json(subdirectories);
 });
 

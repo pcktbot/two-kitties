@@ -13,6 +13,7 @@
   --lt-blue: #bad9e5;
   --blue   : #294970;
   --yellow : #ae8f48;
+  --dk-silver: #a5afc0;
   --silver : #d3d4cd;
 }
 
@@ -33,7 +34,8 @@ body {
 
 .item {
   width: 80%; height: 90%; margin: 10px;
-  
+              /* max-height: 150px; */
+              line-height: 0;
   
   box-shadow: inset -300px -300px     0 var(--black),
               inset  300px -300px     0 var(--red),
@@ -53,7 +55,7 @@ body {
   justify-content: center;
   align-items: center;
   overflow: hidden;
-
+  font-size: 10rem;
 }
  
 .item:hover {
@@ -74,26 +76,78 @@ body {
   color: white;
   pointer-events: none;
   user-select: none;
+  transition: color 200ms ease-in,
+        text-shadow 250ms ease-out;
+}
+
+.item:hover .label {
+  color: var(--black);
+  text-shadow: 0 0 10px rgba(0,0,0,.5);
 }
 
 
 .input-container {
   position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 35vw;
-  padding: 10px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 350px;
+  padding: 6px;
+  border-radius: 9999px;
+  background-color: white;
+  border: 2px solid var(--silver);
+  box-shadow: 0 10px 50px rgba(0,0,0,.5);
+}
+.clear {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 5rem;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  padding: 0;
+  transition: color 200ms ease-in,
+          transform 200ms ease-out,
+        text-shadow 250ms ease-out,
+   background-color 200ms ease-in;
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translate(0, -50%);
+  border: 4px solid transparent;
+  background-color: var(--silver);
+  color: var(--dk-silver);
+  border-radius: 50%;
+  line-height: 0;
+  box-shadow: 0 5px 30px rgba(0,0,0,.5);
+
+}
+
+.clear:hover {
+  background-color: var(--dk-red);
+  color: var(--red);
+  border-color: var(--dk-red);
+  text-shadow: 5px 5px 0 white;
+}
+.clear:hover span {
+  transform: translateY(-5px);
 }
 .input {
   width: 100%;
   height: 100%;
   border: none;
-  outline: none;
+  outline-color: var(--blue);
+  /* outline: none; */
   background-color: white;
   color: var(--black);
   /* text-shadow: 0 0 0 white; */
-  font-size: 4rem;
-  text-align: center;
-  caret-color: transparent;
+  font-size: 1.5rem;
+  padding: 0 0.5rem;
+  caret-color: var(--blue);
   transition: text-shadow linear 300ms;
+  cursor: text;
+}
+.input::placeholder {
+  color: var(--silver);
 }

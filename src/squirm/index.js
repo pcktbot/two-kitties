@@ -60,6 +60,12 @@
   }
 
   const input = document.querySelector('.input');
+  const clearBtn = document.querySelector('a.clear');
+  clearBtn.addEventListener('click', () => {
+    input.value = null;
+    onChange({target: input});
+  });
+  input.value = null;
   input.addEventListener('input', onChange);
   input.addEventListener('click', (e) => e.stopPropagation());
   
@@ -68,6 +74,7 @@
       items[i].innerHTML = string[i];
     }
   }
+
   items.forEach((item, index) => {
     // item.firstChild.textContent = index;
     setInterval(borderRadiusStyle, generateRandomNumber(1, 20) * 100, item);

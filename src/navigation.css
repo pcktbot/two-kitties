@@ -1,0 +1,21 @@
+:root {
+  --primary: #a8d2cc;
+}
+.navigation {
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.nav-list {
+  list-style: none;
+  text-decoration: none;
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+}
+.nav-item {}
+.nav-link {
+  color: var(--primary);
+  border: 1px solid var(--primary);
+  padding: 0.25rem 1.5rem;
+  margin: 0 0 0.5rem;
+  text-decoration: none;
+}
