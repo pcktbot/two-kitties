@@ -1,4 +1,4 @@
-async function loadNav () {
+export async function loadNav () {
   const navElements = await fetch('http://localhost:3000/api/navigation');
   const navElementsJson = await navElements.json();
   const nav = document.querySelector('.navigation');
@@ -18,17 +18,21 @@ async function loadNav () {
 
 }
 
-function createEl (selector) {
-  const tag = selector.split('.')[0];
-  const classes = selector.split('.')[1];
-  const id = selector.startsWith('#') ? selector.substring(1) : null;
-  
+export function createEl(selector) {
+  if (!selector) throw new Error('Please provide a selector');
+
+  const tag = selector.split(/(?=#|\.)+/)[0];
+  const attributes = selector.match(/(?<=\.)([^.#]+)/g);
+  console.log('#createEl', { tag, attributes });
   const element = document.createElement(tag);
-  
-  if (classes) element.classList.add(...classes.split(' '));
-  
-  if (id) { element.id = id; }
-  
+  const id = selector.match(/(?<=#)([^.#]+)/g);
+  if (id) element.id = id[0];
+  if (attributes) {
+    for (let attribute of attributes) {
+      element.classList.add(attribute);
+    }
+  }
+
   return element;
 }
 

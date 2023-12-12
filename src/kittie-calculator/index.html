@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Kittie Calculator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Recursive:wght,CRSV@300..800,0..1&display=swap" rel="stylesheet"> 
+    <link href="../navigation.css" type="text/css" rel="stylesheet">
+    <link href="kittie-calculator.css" type="text/css" rel="stylesheet">
+  </head>
+
+  <body>
+    <nav class="navigation"></nav>
+    <div class="module-wrapper" id="kittie-calculator">
+      <div class="output-wrapper">
+        <span id="output-1" class="output">0oz</span>
+        <spann id="output-1-context" class="output small dk-gray">ex</spann>
+        <span class="grow-1"></span>
+        <spann id="output-2-context" class="output small">ex</spann>
+        <span id="output-2" class="output dk-gray"> 0oz</span>
+      </div>
+      <div class="input-wrapper">
+        <div class="cat-module">
+          <div class="field-group">
+            <label for="cat_name" class="field-group-label">Cat's Name</label>
+            <input type="text" placeholder="Cat's Name" id="cat_name" class="field-group-input"/>
+          </div>
+          <div class="field-group">
+            <label for="meal_count" class="field-group-label">How many feedings per day?</label>
+            <input type="number" placeholder="0" id="meal_count" class="field-group-input"/>
+          </div>
+          <div class="field-group">
+            <label for="cat_weight" class="field-group-label">Cat's Weight (lbs)</label>
+            <input type="number" placeholder="Cat's Weight (lbs)" id="cat_weight" class="field-group-input" min="0" />
+          </div>
+          <div class="field-group">
+            <label for="percent_dry" class="field-group-label">% Dry Food</label>
+            <input type="range" min="0" max="100" class="field-group-range" id="percent_dry" />
+            <div class="row">
+              <span class="range">
+                % Dry <pre id="output_percent_dry">00</pre>
+              </span>
+              <span class="range">
+                % Wet <pre id="output_percent_wet">00</pre>
+              </span>
+            </div>
+          </div>
+          <button class="input-reset"><span>〠</span> Reset</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="../navigation.js" type="text/javascript"></script>
+    <script src="kittie-calculator.js" type="text/javascript"></script>
+  </body>
+
+
+</html>
