@@ -1,29 +1,31 @@
+import ApiAdapter from "./ApiAdapter";
+
+const http = new ApiAdapter({ baseUrl: 'http://localhost:3000', namespace: 'api' });
+
 export async function loadNav () {
-  const navElements = await fetch('http://localhost:3000/api/navigation');
-  const navElementsJson = await navElements.json();
+  const path = 'navigation';
+  const url = http.formatUrl(path);
+  const navElements = await http.request(url);
   const nav = document.querySelector('.navigation');
   const unorderedEl = createEl('ul.nav-list');
 
-  for (let listItem of navElementsJson) {
+  for (let listItem of navElements) {
     const listEl = createEl('li.nav-item');
     const anchorEl = createEl('a.nav-link');
     anchorEl.href = listItem.href;
     anchorEl.textContent = listItem.name.toUpperCase();
     listEl.appendChild(anchorEl);
     unorderedEl.appendChild(listEl);
-
   }
 
   nav.insertAdjacentElement('beforeend', unorderedEl);
-
 }
 
-export function createEl(selector) {
+export function createEl (selector) {
   if (!selector) throw new Error('Please provide a selector');
 
   const tag = selector.split(/(?=#|\.)+/)[0];
   const attributes = selector.match(/(?<=\.)([^.#]+)/g);
-  console.log('#createEl', { tag, attributes });
   const element = document.createElement(tag);
   const id = selector.match(/(?<=#)([^.#]+)/g);
   if (id) element.id = id[0];
