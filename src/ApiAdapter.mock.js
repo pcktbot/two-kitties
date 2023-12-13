@@ -12,13 +12,15 @@ export default class MockApiAdapter {
     return jest.fn().mockReturnValue(`expectedURL/${path}`);
   }
 
-  async request (fail = false) {
-    if (fail) {
+  async request(url) {
+    if (url.includes('return-error')) {
       return jest.fn().mockRejectedValue(new Error('Request failed'));
     }
-    return jest.fn().mockResolvedValue([
+
+    const res = jest.fn().mockResolvedValue([
       { href: '/home', name: 'Home' },
       { href: '/about', name: 'About' },
     ]);
+    return res();
   }
 }

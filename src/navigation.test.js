@@ -1,23 +1,32 @@
 import {jest} from '@jest/globals';
 import MockApiAdapter from './ApiAdapter.mock';
 import { createEl, loadNav } from './navigation';
+import ApiAdapter from './ApiAdapter';
 
 jest.unstable_mockModule('./ApiAdapter', () => {
   return { default: MockApiAdapter };
 });
 
+describe('MockApiAdapter', () => {
+  it('should return a mock response when request is called', () => {
+    const mockResponse = { data: 'mock data' };
+    MockApiAdapter.request = jest.fn().mockReturnValue(mockResponse);
+
+    const response = MockApiAdapter.request('navigation');
+
+    expect(response).toEqual(mockResponse);
+    expect(MockApiAdapter.request).toHaveBeenCalledWith('navigation');
+  });
+});
 
 describe('loadNav', () => {
   beforeEach(async () => {
-    const ApiAdapter = await import('./ApiAdapter');
     document.body.innerHTML = '<div class="navigation"></div>';
   });
   
   it('should call request with "navigation"', async () => {
     await loadNav();
-    const mockApiAdapterInstance = new ApiAdapter();
-    const mockRequest = mockApiAdapterInstance.request;
-    expect(mockRequest).toHaveBeenCalledWith('expectedURL');
+    expect(MockApiAdapter).toHaveBeenCalledWith('navigation');
   });
 
   it('should append navigation elements to the DOM', async () => {

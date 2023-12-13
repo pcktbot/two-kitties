@@ -1,11 +1,11 @@
-import ApiAdapter from "./ApiAdapter";
+import ApiAdapter from './ApiAdapter.js';
 
-const http = new ApiAdapter({ baseUrl: 'http://localhost:3000', namespace: 'api' });
+const apiAdapter = new ApiAdapter({ baseUrl: 'http://localhost:3000', namespace: 'api' });
 
 export async function loadNav () {
   const path = 'navigation';
-  const url = http.formatUrl(path);
-  const navElements = await http.request(url);
+  const url =  apiAdapter.formatUrl(path);
+  const navElements = await apiAdapter.request(url);
   const nav = document.querySelector('.navigation');
   const unorderedEl = createEl('ul.nav-list');
 
