@@ -1,22 +1,21 @@
 import {jest} from '@jest/globals';
-import ApiAdapter from './ApiAdapter';
+import MockApiAdapter from './ApiAdapter.mock';
 import { createEl, loadNav } from './navigation';
 
-jest.mock('./ApiAdapter');
+jest.unstable_mockModule('./ApiAdapter', () => {
+  return { default: MockApiAdapter };
+});
+
 
 describe('loadNav', () => {
   beforeEach(async () => {
+    const ApiAdapter = await import('./ApiAdapter');
     document.body.innerHTML = '<div class="navigation"></div>';
-    // ApiAdapter.mockClear();
-    ApiAdapter.prototype.request = jest.fn().mockResolvedValue([
-      { href: '/home', name: 'Home' },
-      { href: '/about', name: 'About' },
-    ]);
   });
-
+  
   it('should call request with "navigation"', async () => {
     await loadNav();
-    const mockApiAdapterInstance = ApiAdapter.mock.instances[0];
+    const mockApiAdapterInstance = new ApiAdapter();
     const mockRequest = mockApiAdapterInstance.request;
     expect(mockRequest).toHaveBeenCalledWith('expectedURL');
   });

@@ -8,8 +8,17 @@ export default class ApiAdapter {
     this.allowedMethods = params.allowedMethods || ['GET', 'POST', 'PUT'];
   }
 
-
   formatUrl (path) {
+    path = path.replace(/^\/|\/$/g, '');
+    if (this.baseUrl.endsWith('/')) {
+      this.baseUrl = this.baseUrl.slice(0, -1);
+    }
+    if (this.namespace.startsWith('/')) {
+      this.namespace = this.namespace.slice(1);
+    }
+    if (this.namespace.endsWith('/')) {
+      this.namespace = this.namespace.slice(0, -1);
+    }
     return `${this.baseUrl}/${this.namespace}/${path}`;
   }
 
